@@ -16,6 +16,10 @@ public class Constants {
 
     public static final int CHANNEL_VALUES = 256;
     public static final boolean HISTOGRAM_ACCUMULATE = false;
+    public static String CLUSTER_PATH = "/Users/garrydmello/IdeaProjects/res/Alin_Day1_002/Clusters";
+    public static int NUM_BUCKETS = 40;
+
+
 
     public static final int MAX_HISTOGRAM_DIFFERENCE = 259200;
     public static final double IMAGE_SUMMARY_THRESHOLD_PERCENT = 0.35;
