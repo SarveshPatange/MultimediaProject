@@ -87,10 +87,10 @@ public class ImgIndex {
 
 
                byte[] bytes;
-
+                int count = 0;
                for(int i = 0; i< TOTAL_FRAMES;i++){
 
-
+                    count += BYTES_PER_FRAME;
                    bytes = new byte[BYTES_PER_FRAME];
                    inFileStream.read(bytes,0,BYTES_PER_FRAME);
 
@@ -102,6 +102,8 @@ public class ImgIndex {
                    Mat chanR = chanHist.get(0);
                    Mat chanG = chanHist.get(1);
                    Mat chanB = chanHist.get(2);
+
+
 
                    double totalR = 0.0;
                    double totalG = 0.0;
@@ -130,13 +132,18 @@ public class ImgIndex {
 
                    double AvgHist = Math.round((totalR+totalG+totalB)/(256*3));
 
-
+                   if(i ==0)
+                   {
+                       System.out.println("Frame 0 " + AvgHist);
+                   }
 
                    metricList.add(AvgHist);
 
 
 
                }
+
+               System.out.println("*****count : " + count);
 
 
 
@@ -167,7 +174,7 @@ public class ImgIndex {
 
         rangeCluster = Math.round(diff/NUM_BUCKETS);
 
-        System.out.println("Range :"+rangeCluster);
+        //System.out.println("Range :"+rangeCluster);
 
         //Integer[] arrayList = metricList.toArray(new Integer[metricList.size()]);
 
@@ -203,9 +210,9 @@ public class ImgIndex {
 
             double histFrame = metricList.get(i);
             int bucket_id = (int)Math.floor((histFrame - minHist)/(rangeCluster+1));
-            System.out.println("histFrame :"+histFrame);
-            System.out.println("Frame :"+i);
-            System.out.println("Bucket id :"+bucket_id);
+            //System.out.println("histFrame :"+histFrame);
+            //System.out.println("Frame :"+i);
+            //System.out.println("Bucket id :"+bucket_id);
 
             Double[] drop = new Double[2];
             // Store the frame Info in the drop
@@ -229,6 +236,14 @@ public class ImgIndex {
     public void genFiles(){
 
              BufferedImage bi;
+
+        try {
+            inFileStream = new FileInputStream(inFile);
+            this.TOTAL_FRAMES = (int)inFile.length()/BYTES_PER_FRAME;
+             } catch (FileNotFoundException e) {
+                  e.printStackTrace();
+             }
+
 
 
 
@@ -277,7 +292,7 @@ public class ImgIndex {
 
                  try{
                      ImageIO.write(bi, "png", outFile);
-                     bi.flush();
+                     //bi.flush();
                  }catch(IOException ioex) {
                      ioex.printStackTrace();
                  }

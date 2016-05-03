@@ -2,7 +2,9 @@ package Video;
 
 import Bucket.Bucket;
 import Config.Constants;
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.core.Scalar;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -63,12 +65,12 @@ public class QueryImg {
             //bi = ImageIO.read(is);
 
             //FileWriter out
-            byte[] bytes = new byte[(int)ipFile.length()];
+            byte[] bytes = new byte[Math.round(ipFile.length())];
             is.read(bytes, 0, Math.round(ipFile.length()));
 
             System.out.println("ipFile length"+ipFile.length());
 
-            bi = new BufferedImage(IMGWIDTH, IMGHEIGHT, BufferedImage.TYPE_INT_RGB);
+            /*bi = new BufferedImage(IMGWIDTH, IMGHEIGHT, BufferedImage.TYPE_INT_RGB);
 
             int ind = 0;
             for(int y = 0; y < IMGHEIGHT; y++) {
@@ -83,26 +85,32 @@ public class QueryImg {
                     ind++;
                 }
             }
-             resized = resizeImage(bi,BufferedImage.TYPE_INT_RGB);
+            */
+             //resized = resizeImage(bi,BufferedImage.TYPE_INT_RGB);
 
-             ImageIO.write(resized,"rgb",baos);
-             ImageIO.write(resized,"png",output);
+             //ImageIO.write(resized,"rgb",baos);
+             //ImageIO.write(resized,"png",output);
 
 
              //bytes =((DataBufferByte)resized.getRaster().getDataBuffer()).getData();
-             bytes = baos.toByteArray();
+            // bytes = baos.toByteArray();
 
 
             Histogram hist = new Histogram();
 
-            imgHist = hist.getHistogram(bytes);
+            imgHist = hist.getHistogram(bytes,IMGWIDTH,IMGHEIGHT);
 
-            imgHist = hist.getHistogram(bytes);
+            //imgHist = hist.getHistogram(bytes);
 
 
             Mat chanR = imgHist.get(0);
             Mat chanG = imgHist.get(1);
             Mat chanB = imgHist.get(2);
+
+            Core.multiply(chanR,new Scalar((1/(2.66*2.66))),chanR);
+            Core.multiply(chanG,new Scalar((1/(2.66*2.66))),chanG);
+            Core.multiply(chanB,new Scalar((1/(2.66*2.66))),chanB);
+
 
             double totalR = 0.0;
             double totalG = 0.0;
