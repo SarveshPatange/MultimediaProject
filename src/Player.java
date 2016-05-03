@@ -5,6 +5,7 @@ import java.awt.event.*;
 import PlayerComponents.*;
 import Summary.*;
 import Video.*;
+import Config.Constants;
 
 
 public class Player {
@@ -15,8 +16,6 @@ public class Player {
     JFrame frame;
     InputStream is;
     //BufferedImage img;
-    static int width = 480;
-    static int height = 270;
     Video videoPlayer;
     Audio audioPlayer;
     JButton playButton, pauseButton, stopButton, summarizeButton, searchButton;
@@ -47,14 +46,14 @@ public class Player {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel buttons = new JPanel();
-        buttons.setPreferredSize(new Dimension(width, 90));
+        buttons.setPreferredSize(new Dimension(Constants.WIDTH, 90));
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setPreferredSize(new Dimension(width, 45));
+        buttonPanel.setPreferredSize(new Dimension(Constants.WIDTH, 45));
         buttons.add(buttonPanel);
 
         JPanel advancedPanel = new JPanel();
-        advancedPanel.setPreferredSize(new Dimension(width, 45));
+        advancedPanel.setPreferredSize(new Dimension(Constants.WIDTH, 45));
         buttons.add(advancedPanel);
 
         frame.getContentPane().add(buttons, BorderLayout.SOUTH);
@@ -137,7 +136,7 @@ public class Player {
 
         img.genHistList();
         img.genClusters();
-        //img.genFiles();
+        img.genFiles();
 
 
         QueryImg query = new QueryImg();
