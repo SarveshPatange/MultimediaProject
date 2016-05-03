@@ -1,8 +1,4 @@
 import org.opencv.core.Core;
-import player.*;
-import audioProcessing.*;
-import imageProcessing.*;
-import videoSearch.VideoSearch;
 
 public class Main {
     public static void main(String[] args){
@@ -18,7 +14,7 @@ public class Main {
 
 
         /*
-        Player AVPlayer = new Player("/home/sailesh/Documents/summarized.rgb",  "/home/sailesh/Documents/summarized.wav");
+        PlayerComponents AVPlayer = new PlayerComponents("/home/sailesh/Documents/summarized.rgb",  "/home/sailesh/Documents/summarized.wav");
 		AVPlayer.loadAudio();
 		AVPlayer.loadVideo();
 		AVPlayer.initialize();*/

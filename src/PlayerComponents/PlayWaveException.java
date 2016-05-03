@@ -1,4 +1,4 @@
-package player;
+package PlayerComponents;
 //package org.wikijava.sound.playWave;
 
 /**

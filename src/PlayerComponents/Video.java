@@ -1,4 +1,4 @@
-package player;
+package PlayerComponents;
 
 import java.awt.image.*;
 import java.io.*;

@@ -1,17 +1,12 @@
-package player;
+package PlayerComponents;
 import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
-import javax.sound.sampled.DataLine.Info;
 
 /**
  *
@@ -84,7 +79,7 @@ public class Audio {
 		audioClip.stop();
 		currentFrame = audioClip.getFramePosition();
 		currentTime = audioClip.getMicrosecondPosition();
-		System.out.println("------------------Audio curr: " + currentFrame);
+		System.out.println("------------------AudioAnalyser curr: " + currentFrame);
 	}
 
 	public void play()

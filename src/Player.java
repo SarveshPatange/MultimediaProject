@@ -2,8 +2,8 @@ import java.awt.*;
 import java.io.*;
 import javax.swing.*;
 import java.awt.event.*;
-import player.*;
-import Summarizer.*;
+import PlayerComponents.*;
+import Summary.*;
 
 public class Player {
 
@@ -81,7 +81,7 @@ public class Player {
 
         JLabel lbText1 = new JLabel("Video: " + vidFile);
         lbText1.setHorizontalAlignment(SwingConstants.LEFT);
-        JLabel lbText2 = new JLabel("Audio: " + audFile);
+        JLabel lbText2 = new JLabel("AudioAnalyser: " + audFile);
         lbText2.setHorizontalAlignment(SwingConstants.LEFT);
         lbIm1 = new JLabel(new ImageIcon( videoPlayer.img));
 
@@ -113,8 +113,8 @@ public class Player {
         playButton.setEnabled(false);
         pauseButton.setEnabled(false);
 
-        Summarizer summ = new Summarizer(vidFile,audFile);
-        summ.summarize("asd");
+        Condenser summ = new Condenser(vidFile,audFile);
+        summ.condense("asd");
 
         System.out.println("Video Summarized");
         loadAudio("/home/sailesh/Documents/summarized.wav");

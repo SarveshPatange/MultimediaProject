@@ -1,4 +1,4 @@
-package imageProcessing;
+package Video;
 
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
