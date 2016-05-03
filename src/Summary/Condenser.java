@@ -43,7 +43,7 @@ public class Condenser {
 
         System.out.printf("Video done");
 
-        WAVSummarize condensedAudio = new WAVSummarize(AUDIO_FILE);
+        SummarizeWAV condensedAudio = new SummarizeWAV(AUDIO_FILE);
         ArrayList<Integer> keyAudioFrames = null;
         try {
             keyAudioFrames = condensedAudio.processAudio();
@@ -76,7 +76,7 @@ public class Condenser {
             }
             else
             {
-                for(int j = frameIndex; j <= frameIndex + 15 && j <framesRequired.length; j++)
+                for(int j = frameIndex - 14; j <= frameIndex + 15 && j <framesRequired.length; j++)
                 {
                     framesRequired[j] = true;
                 }
