@@ -17,7 +17,7 @@ import java.util.*;
 public class ImgIndex {
 
 
-    private static String CLUSTER_PATH = "/home/sarvesh/USC/CS576/Clusters";
+    private static String CLUSTER_PATH = "/Users/garrydmello/IdeaProjects/res/Alin_Day1_002/Clusters";
     private static int WIDTH = 480;
     private static int HEIGHT = 270;
     private static int CHANNELS = 3;

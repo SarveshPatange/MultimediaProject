@@ -1,7 +1,7 @@
 package Video;
 
 import Bucket.Bucket;
-import org.opencv.core.Core;
+import Config.Constants;
 import org.opencv.core.Mat;
 
 import java.io.*;
@@ -21,17 +21,17 @@ import static org.opencv.core.Core.sumElems;
 public class QueryImg {
 
     private static int CHANNELS = 3;
-    static int WIDTH = 1280;
-    static int HEIGHT = 720;
+    static int IMGWIDTH = 1280;
+    static int IMGHEIGHT = 720;
     double histVal;
     List<Mat> imgHist;
 
 
 
     private static BufferedImage resizeImage(BufferedImage originalImage, int type){
-        BufferedImage resizedImage = new BufferedImage(480, 270, type);
+        BufferedImage resizedImage = new BufferedImage(Constants.WIDTH, Constants.HEIGHT, type);
         Graphics2D g = resizedImage.createGraphics();
-        g.drawImage(originalImage, 0, 0, 480, 270, null);
+        g.drawImage(originalImage, 0, 0, Constants.WIDTH, Constants.HEIGHT, null);
         g.dispose();
 
         return resizedImage;
@@ -52,7 +52,7 @@ public class QueryImg {
         try {
 
             InputStream is = new FileInputStream(ipFile);
-            //File output = new File("/Users/garrydmello/IdeaProjects/CS567Project/src/ImageProcessing/output.png");
+            File output = new File("/Users/garrydmello/IdeaProjects/MultimediaProject/src/output.png");
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -68,15 +68,15 @@ public class QueryImg {
 
             System.out.println("ipFile length"+ipFile.length());
 
-            bi = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+            bi = new BufferedImage(IMGWIDTH, IMGHEIGHT, BufferedImage.TYPE_INT_RGB);
 
             int ind = 0;
-            for(int y = 0; y < HEIGHT; y++) {
-                for(int x = 0; x < WIDTH; x++) {
+            for(int y = 0; y < IMGHEIGHT; y++) {
+                for(int x = 0; x < IMGWIDTH; x++) {
 
                     byte r = bytes[ind];
-                    byte g = bytes[ind+(WIDTH*HEIGHT)];
-                    byte b = bytes[ind+(WIDTH*HEIGHT*2)];
+                    byte g = bytes[ind+(IMGWIDTH*IMGHEIGHT)];
+                    byte b = bytes[ind+(IMGWIDTH*IMGHEIGHT*2)];
 
                     int pix = (0xff000000) | ((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff);
                     bi.setRGB(x,y,pix);
@@ -86,7 +86,7 @@ public class QueryImg {
              resized = resizeImage(bi,BufferedImage.TYPE_INT_RGB);
 
              ImageIO.write(resized,"rgb",baos);
-             //ImageIO.write(resized,"png",output);
+             ImageIO.write(resized,"png",output);
 
 
              //bytes =((DataBufferByte)resized.getRaster().getDataBuffer()).getData();
@@ -94,7 +94,7 @@ public class QueryImg {
 
 
             Histogram hist = new Histogram();
-            imgHist = hist.getHistogram(bytes, 480, 270);
+            imgHist = hist.getHistogram(bytes, Constants.WIDTH, Constants.HEIGHT);
 
 
             Mat chanR = imgHist.get(0);
