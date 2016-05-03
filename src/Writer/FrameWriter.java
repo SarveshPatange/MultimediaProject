@@ -1,4 +1,4 @@
-package MediaWriter;
+package Writer;
 
 import java.io.*;
 

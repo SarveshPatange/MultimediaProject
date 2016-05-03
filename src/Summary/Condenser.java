@@ -1,9 +1,9 @@
-package player;
+package Summary;
 
-import MediaWriter.FrameWriter;
-import MediaWriter.WAVWriter;
-import audioProcessing.AudioProcessing;
-import imageProcessing.ImageProcessing;
+import Writer.*;
+
+import Video.*;
+import AudioAnalyser.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -40,8 +40,13 @@ public class Condenser {
             framesRequired[frame] = true;
         }
 
-        AudioProcessing condensedAudio = new AudioProcessing(AUDIO_FILE);
-        ArrayList<Integer> keyAudioFrames = condensedAudio.processAudio();
+        WAVSummarize condensedAudio = new WAVSummarize(AUDIO_FILE);
+        ArrayList<Integer> keyAudioFrames = null;
+        try {
+            keyAudioFrames = condensedAudio.processAudio();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         for (int i = 0; i < keyAudioFrames.size(); i++)
         {
@@ -57,7 +62,7 @@ public class Condenser {
             framesRequired[i] = true;
         }
 
-        //If Frame has been identified in either Image or Audio processing keep the frames around it.
+        //If Frame has been identified in either Image or AudioAnalyser processing keep the frames around it.
         while( frameIndex < framesRequired.length)
         {
             if(!framesRequired[frameIndex])
@@ -78,7 +83,7 @@ public class Condenser {
             writeImage.writeFrames(framesRequired, new File("condensed.rgb"));
 
             WAVWriter writeAudio = new WAVWriter(AUDIO_FILE);
-            writeAudio.writeFrames(framesRequired, new File("condensed.wav"));
+            writeAudio.genAudio(framesRequired, new File("condensed.wav"));
         }
     }
 
