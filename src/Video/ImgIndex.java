@@ -95,7 +95,7 @@ public class ImgIndex {
                    inFileStream.read(bytes,0,BYTES_PER_FRAME);
 
                    Histogram hist = new Histogram();
-                   List<Mat> chanHist = hist.getHistogram(bytes,WIDTH,HEIGHT);
+                   List<Mat> chanHist = hist.getHistogram(bytes);
                    histList.add(i,chanHist);
 
 

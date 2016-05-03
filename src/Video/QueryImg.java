@@ -94,7 +94,10 @@ public class QueryImg {
 
 
             Histogram hist = new Histogram();
-            imgHist = hist.getHistogram(bytes, Constants.WIDTH, Constants.HEIGHT);
+
+            imgHist = hist.getHistogram(bytes);
+
+            imgHist = hist.getHistogram(bytes);
 
 
             Mat chanR = imgHist.get(0);

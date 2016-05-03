@@ -1,5 +1,7 @@
 package PlayerComponents;
 
+import Config.Constants;
+
 import java.awt.image.*;
 import java.io.*;
 import javax.swing.*;
@@ -16,16 +18,14 @@ public class Video {
 	FileInputStream is;
 	public BufferedImage img;
 	Timer timer;
-	static int width = 480;
-	static int height = 270;
-	static int frameLength = width * height * 3;
+
 	long fileLen;
 	long delay = 0;
 	long interval = 67;
 	int currFrameNum;
 
 		public Video(String vidPath, Audio audioPlayer){
-		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		img = new BufferedImage(Constants.WIDTH, Constants.HEIGHT, BufferedImage.TYPE_INT_RGB);
 		this.audioPlayer = audioPlayer;
 		currFrameNum = 0;
 		System.out.println("Name: " + audioPlayer.name);
@@ -63,7 +63,7 @@ public class Video {
 				else
 				{
 					try{
-						is.skip(frameLength*syncFrames);
+						is.skip(Constants.BYTES_PER_FRAME*syncFrames);
 						currFrameNum +=syncFrames;
 
 					}
@@ -80,7 +80,7 @@ public class Video {
 
 	public void displayFrame(JFrame frame)
 	{
-		byte[] bytes = new byte[(int)frameLength];
+		byte[] bytes = new byte[(int)Constants.BYTES_PER_FRAME];
 		int offset = 0;
 		int numRead = 0;
 		try{
@@ -93,14 +93,14 @@ public class Video {
 		}
 
 		int ind = 0;
-		for(int y = 0; y < height; y++) {
+		for(int y = 0; y < Constants.HEIGHT; y++) {
 
-			for(int x = 0; x < width; x++) {
+			for(int x = 0; x < Constants.WIDTH; x++) {
 
 				byte a = 0;
 				byte r = bytes[ind];
-				byte g = bytes[ind+height*width];
-				byte b = bytes[ind+height*width*2];
+				byte g = bytes[ind+Constants.PIXELS_PER_FRAME];
+				byte b = bytes[ind+Constants.PIXELS_PER_FRAME*2];
 
 				ind++;
 				int pix = 0xff000000 | ((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff);
