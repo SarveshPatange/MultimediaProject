@@ -30,7 +30,7 @@ public class Histogram{
         MatOfInt histogramSize = new MatOfInt(Constants.CHANNEL_VALUES);
         MatOfFloat histogramRange = new MatOfFloat(0f, (float)Constants.CHANNEL_VALUES);
 
-        boolean accumulate = false;
+        boolean accumulate = Constants.HISTOGRAM_ACCUMULATE;
         Mat r_hist = new Mat();
         Mat g_hist = new Mat();
         Mat b_hist = new Mat();

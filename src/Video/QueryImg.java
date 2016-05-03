@@ -54,15 +54,6 @@ public class QueryImg {
         try {
 
             InputStream is = new FileInputStream(ipFile);
-            File output = new File("/Users/garrydmello/IdeaProjects/MultimediaProject/src/output.png");
-
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-            // Resize Image
-            BufferedImage bi;
-            BufferedImage resized;
-
-            //bi = ImageIO.read(is);
 
             //FileWriter out
             byte[] bytes = new byte[Math.round(ipFile.length())];
@@ -70,39 +61,11 @@ public class QueryImg {
 
             System.out.println("ipFile length"+ipFile.length());
 
-            /*bi = new BufferedImage(IMGWIDTH, IMGHEIGHT, BufferedImage.TYPE_INT_RGB);
-
-            int ind = 0;
-            for(int y = 0; y < IMGHEIGHT; y++) {
-                for(int x = 0; x < IMGWIDTH; x++) {
-
-                    byte r = bytes[ind];
-                    byte g = bytes[ind+(IMGWIDTH*IMGHEIGHT)];
-                    byte b = bytes[ind+(IMGWIDTH*IMGHEIGHT*2)];
-
-                    int pix = (0xff000000) | ((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff);
-                    bi.setRGB(x,y,pix);
-                    ind++;
-                }
-            }
-            */
-             //resized = resizeImage(bi,BufferedImage.TYPE_INT_RGB);
-
-             //ImageIO.write(resized,"rgb",baos);
-             //ImageIO.write(resized,"png",output);
-
-
-             //bytes =((DataBufferByte)resized.getRaster().getDataBuffer()).getData();
-            // bytes = baos.toByteArray();
-
-
             Histogram hist = new Histogram();
 
             imgHist = hist.getHistogram(bytes,IMGWIDTH,IMGHEIGHT);
 
-            //imgHist = hist.getHistogram(bytes);
-
-
+            
             Mat chanR = imgHist.get(0);
             Mat chanG = imgHist.get(1);
             Mat chanB = imgHist.get(2);
