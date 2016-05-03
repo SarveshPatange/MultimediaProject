@@ -1,5 +1,7 @@
 package Video;
 
+import Config.Constants;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,8 +18,8 @@ public class ImageProcessing {
     private int height;
     private int frameLength;
     private ArrayList<Integer> keyFrames;
-    private double MAX_DIFF = 259200;
-    private double THRESHOLD = 0.35 * MAX_DIFF;
+
+    private double THRESHOLD = Constants.IMAGE_SUMMARY_THRESHOLD_PERCENT * Constants.MAX_HISTOGRAM_DIFFERENCE;
     private Histogram hist;
     public static int keyFrameSize;
 
@@ -62,7 +64,7 @@ public class ImageProcessing {
                 currentHist = hist.getHistogram(bytes, width, height);
             }
 
-            if (hist.getDifference(currentHist, referenceHist, 3) >= THRESHOLD) {
+            if (hist.getDifference(currentHist, referenceHist) >= THRESHOLD) {
                 System.out.println("Threshold crossed.");
                 referenceHist = currentHist;
                 keyFrames.add(i);

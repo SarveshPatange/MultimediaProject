@@ -132,7 +132,7 @@ public class WAVSummarize {
                     catch (Exception e){
 
                     }
-
+                     */
                     int temp = time+i+3;
                     System.out.println("Time : "+time);
                     try {
@@ -146,7 +146,7 @@ public class WAVSummarize {
                     catch(Exception e){
 
                     }
-                    */
+
                 }
             }
         }
@@ -160,7 +160,7 @@ public class WAVSummarize {
 
                 if ((arrayList[i + 2] - arrayList[i + 1] == 1)) {
                     secs.add(arrayList[i]);
-                    try{
+                    /*try{
 
                         if(arrayList[i+3]- arrayList[i + 2] == 1){
                             secs.add(i + 3);
@@ -169,6 +169,7 @@ public class WAVSummarize {
                     catch (Exception e){
 
                     }
+                    */
                 }
 
             }

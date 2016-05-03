@@ -43,7 +43,7 @@ public class Condenser {
 
         System.out.printf("Video done");
 
-        SummarizeWAV condensedAudio = new SummarizeWAV(AUDIO_FILE);
+        WAVSummarize condensedAudio = new WAVSummarize(AUDIO_FILE);
         ArrayList<Integer> keyAudioFrames = null;
         try {
             keyAudioFrames = condensedAudio.processAudio();

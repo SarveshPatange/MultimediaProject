@@ -3,6 +3,8 @@ package Video;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 
+import Config.Constants;
+
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.util.ArrayList;
@@ -25,8 +27,8 @@ public class Histogram{
         this.histograms = new ArrayList<Mat>();
         Core.split(this.IMAGE, this.histograms);
 
-        MatOfInt histogramSize = new MatOfInt(256);
-        MatOfFloat histogramRange = new MatOfFloat(0f, 256f);
+        MatOfInt histogramSize = new MatOfInt(Constants.CHANNEL_VALUES);
+        MatOfFloat histogramRange = new MatOfFloat(0f, (float)Constants.CHANNEL_VALUES);
 
         boolean accumulate = false;
         Mat r_hist = new Mat();
@@ -52,15 +54,15 @@ public class Histogram{
         return this.histograms;
     }
 
-    public double getDifference(List<Mat> referenceHist, List<Mat> currentHist, int numChannels){
+    public double getDifference(List<Mat> referenceHist, List<Mat> currentHist){
 
         double value = 0.0;
-        for (int i = 0; i < numChannels; i++){
+        for (int i = 0; i < Constants.CHANNELS; i++){
             Mat diff = new Mat();
             absdiff(referenceHist.get(i), currentHist.get(i), diff);
             value += sumElems(diff).val[0];
         }
 
-        return value / numChannels;
+        return value / Constants.CHANNELS;
     }
 }
