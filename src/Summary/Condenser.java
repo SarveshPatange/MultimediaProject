@@ -28,17 +28,20 @@ public class Condenser {
 
     public void condense(String outFile)
     {
+        System.out.printf("Starting summary");
         this.OUTPUT_FILE = outFile;
 
         boolean[] framesRequired = new boolean[TOTAL_FRAMES];
 
         ImageProcessing condensedImage = new ImageProcessing(IMAGE_FILE, TOTAL_FRAMES, 480, 270);
         ArrayList<Integer> keyImageFrames = condensedImage.generateKeyFrames();
-
+        System.out.printf("Video len: " + keyImageFrames.size());
         for (int frame: keyImageFrames)
         {
             framesRequired[frame] = true;
         }
+
+        System.out.printf("Video done");
 
         WAVSummarize condensedAudio = new WAVSummarize(AUDIO_FILE);
         ArrayList<Integer> keyAudioFrames = null;
@@ -47,7 +50,8 @@ public class Condenser {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        System.out.println(keyAudioFrames);
+        System.out.printf("Audio len: " + keyImageFrames.size());
         for (int i = 0; i < keyAudioFrames.size(); i++)
         {
             int frameTime = keyAudioFrames.get(i);
@@ -79,12 +83,13 @@ public class Condenser {
                 frameIndex += 16;
             }
 
-            FrameWriter writeImage = new FrameWriter(IMAGE_FILE);
-            writeImage.writeFrames(framesRequired, new File("condensed.rgb"));
-
-            WAVWriter writeAudio = new WAVWriter(AUDIO_FILE);
-            writeAudio.genAudio(framesRequired, new File("condensed.wav"));
         }
+
+        FrameWriter writeImage = new FrameWriter(IMAGE_FILE);
+        writeImage.writeFrames(framesRequired, new File("/home/sarvesh/USC/CS576/Summary_files/summarized.rgb"));
+
+        WAVWriter writeAudio = new WAVWriter(AUDIO_FILE);
+        writeAudio.genAudio(framesRequired, new File("/home/sarvesh/USC/CS576/Summary_files/summarized.wav"));
     }
 
 }

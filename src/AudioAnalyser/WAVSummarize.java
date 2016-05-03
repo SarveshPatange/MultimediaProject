@@ -12,7 +12,7 @@ public class WAVSummarize {
     private static InputStream waveStream;
     private static AudioInputStream audioInputStream;
     private static AudioFormat audioFormat;
-    private double MAINTHRESHOLD = 800;
+    private double MAINTHRESHOLD = 800.00;
     private static int AUDIOTIME = 600;
     private static int WINDOWSIZE = 20;
 
@@ -112,11 +112,11 @@ public class WAVSummarize {
         for (int time = 0; time < sampleSize; time += WINDOWSIZE) {
             buffer = new double[WINDOWSIZE];
             for (int i = 0; i < WINDOWSIZE; i++) {
-                System.out.println("I : "+i);
+                //System.out.println("I : "+i);
                 buffer[i] = meanSq[meanIdx];
-                System.out.println("Meanidx : "+meanIdx);
+               /* System.out.println("Meanidx : "+meanIdx);
                 System.out.println("MeanSq Length : "+meanSq.length);
-
+                 */
                 meanIdx++;
             }
             double windowThreshold = meanSquare(buffer);
@@ -131,7 +131,22 @@ public class WAVSummarize {
                     }
                     catch (Exception e){
 
-                    }*/
+                    }
+
+                    int temp = time+i+3;
+                    System.out.println("Time : "+time);
+                    try {
+                        while (meanSq[temp] >= windowThreshold) {
+                            secs.add(temp);
+                            temp++;
+                        }
+
+                        System.out.println("Temp : "+temp);
+                    }
+                    catch(Exception e){
+
+                    }
+                    */
                 }
             }
         }

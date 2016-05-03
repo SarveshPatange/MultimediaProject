@@ -26,6 +26,8 @@ public class QueryImg {
     double histVal;
     List<Mat> imgHist;
 
+
+
     private static BufferedImage resizeImage(BufferedImage originalImage, int type){
         BufferedImage resizedImage = new BufferedImage(480, 270, type);
         Graphics2D g = resizedImage.createGraphics();
@@ -50,7 +52,7 @@ public class QueryImg {
         try {
 
             InputStream is = new FileInputStream(ipFile);
-            File output = new File("/Users/garrydmello/IdeaProjects/CS567Project/src/ImageProcessing/output.png");
+            //File output = new File("/Users/garrydmello/IdeaProjects/CS567Project/src/ImageProcessing/output.png");
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -84,7 +86,7 @@ public class QueryImg {
              resized = resizeImage(bi,BufferedImage.TYPE_INT_RGB);
 
              ImageIO.write(resized,"rgb",baos);
-             ImageIO.write(resized,"png",output);
+             //ImageIO.write(resized,"png",output);
 
 
              //bytes =((DataBufferByte)resized.getRaster().getDataBuffer()).getData();
@@ -183,20 +185,5 @@ public class QueryImg {
     }
 
 
-    public static void main(String[] args){
 
-
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        ImgIndex img = new ImgIndex(args[0]);
-
-        img.genHistList();
-        img.genClusters();
-        //img.genFiles();
-
-
-        QueryImg query = new QueryImg();
-        query.searchImg(args[0],img);
-
-
-    }
 }

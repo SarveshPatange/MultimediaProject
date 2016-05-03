@@ -17,8 +17,7 @@ import java.util.*;
 public class ImgIndex {
 
 
-    private static String IMAGE_FILE_NAME = "/Users/garrydmello/IdeaProjects/CS567Project/src/Alireza_Day2_003.rgb";
-    private static String CLUSTER_PATH = "/Users/garrydmello/IdeaProjects/CS567Project/Clusters";
+    private static String CLUSTER_PATH = "/home/sarvesh/USC/CS576/Clusters";
     private static int WIDTH = 480;
     private static int HEIGHT = 270;
     private static int CHANNELS = 3;
@@ -42,11 +41,10 @@ public class ImgIndex {
 
     public ImgIndex( String fileName){
 
-        fileName = IMAGE_FILE_NAME;
         try{
             inFile = new File(fileName);
             inFileStream = new FileInputStream(inFile);
-            TOTAL_FRAMES = (int)inFile.length()/BYTES_PER_FRAME;
+            this.TOTAL_FRAMES = (int)inFile.length()/BYTES_PER_FRAME;
 
 
         }
@@ -87,19 +85,14 @@ public class ImgIndex {
 
            try {
 
-               File ipFile = new File(IMAGE_FILE_NAME);
-               InputStream is = new FileInputStream(ipFile);
-               //FileWriter out = new FileWriter(new File("/Users/garrydmello/IdeaProjects/CS567Project/src/ImageProcessing/output.txt"));
-
-               int totalFrames= (int)ipFile.length()/BYTES_PER_FRAME;
 
                byte[] bytes;
 
-               for(int i = 0; i< totalFrames;i++){
+               for(int i = 0; i< TOTAL_FRAMES;i++){
 
 
                    bytes = new byte[BYTES_PER_FRAME];
-                   is.read(bytes,0,BYTES_PER_FRAME);
+                   inFileStream.read(bytes,0,BYTES_PER_FRAME);
 
                    Histogram hist = new Histogram();
                    List<Mat> chanHist = hist.getHistogram(bytes,WIDTH,HEIGHT);

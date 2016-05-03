@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.event.*;
 import PlayerComponents.*;
 import Summary.*;
+import Video.*;
+
 
 public class Player {
 
@@ -28,7 +30,7 @@ public class Player {
     public void loadAudio( String audioFile){
         audFile = audioFile;
         audioPlayer = new Audio(audFile);
-        audioPlayer.name = "sailesh";
+        audioPlayer.name = "sarvesh";
 
     }
 
@@ -117,14 +119,30 @@ public class Player {
         summ.condense("asd");
 
         System.out.println("Video Summarized");
-        loadAudio("/home/sailesh/Documents/summarized.wav");
-        loadVideo("/home/sailesh/Documents/summarized.rgb");
+        loadAudio("/home/sarvesh/USC/CS576/Summary_files/summarized.wav");
+        loadVideo("/home/sarvesh/USC/CS576/Summary_files/summarized.rgb");
         playButton.setEnabled(true);
         pauseButton.setEnabled(true);
 
     }
 
+    public void search()
+    {
+        stop();
+        playButton.setEnabled(false);
+        pauseButton.setEnabled(false);
 
+
+        ImgIndex img = new ImgIndex(this.vidFile);
+
+        img.genHistList();
+        img.genClusters();
+        //img.genFiles();
+
+
+        QueryImg query = new QueryImg();
+        query.searchImg(this.searchImg,img);
+    }
 
 
     class CustomActionListener implements ActionListener {
@@ -149,7 +167,7 @@ public class Player {
                 summarize();
             }
             else if(buttonText.equals("SEARCH")) {
-                stop();
+                search();
             }
         }
     }
