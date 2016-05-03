@@ -1,7 +1,7 @@
 package Summary;
 
+import Config.Constants;
 import Writer.*;
-
 import Video.*;
 import AudioAnalyser.*;
 
@@ -18,7 +18,7 @@ public class Condenser {
 
     private String OUTPUT_FILE;
 
-    private static final int  TOTAL_FRAMES = 4500;
+
 
     public Condenser(String imageFile, String audioFile)
     {
@@ -31,9 +31,9 @@ public class Condenser {
         System.out.printf("Starting summary");
         this.OUTPUT_FILE = outFile;
 
-        boolean[] framesRequired = new boolean[TOTAL_FRAMES];
+        boolean[] framesRequired = new boolean[Constants.TOTAL_FRAMES];
 
-        ImageProcessing condensedImage = new ImageProcessing(IMAGE_FILE, TOTAL_FRAMES, 480, 270);
+        ImageProcessing condensedImage = new ImageProcessing(IMAGE_FILE);
         ArrayList<Integer> keyImageFrames = condensedImage.generateKeyFrames();
         System.out.printf("Video len: " + keyImageFrames.size());
         for (int frame: keyImageFrames)

@@ -1,18 +1,16 @@
 package Writer;
 
+import Config.Constants;
+
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.*;
 
-/**
- * Created by sailesh on 5/2/16.
- */
 public class WAVWriter {
 
-    private int BUFFER ;
-    private int AUDIOSAMPLES_PER_VIDEOFRAME = 1600;
+    private int BUFFER;
     AudioInputStream audStream;
     InputStream ipStream;
     String inFile;
@@ -23,7 +21,7 @@ public class WAVWriter {
         try {
             ipStream = new FileInputStream(inFile);
             audStream  = AudioSystem.getAudioInputStream(new BufferedInputStream(ipStream));
-            this.BUFFER = AUDIOSAMPLES_PER_VIDEOFRAME * audStream.getFormat().getFrameSize();
+            this.BUFFER = Constants.AUDIO_SAMPLES_PER_VIDEO_FRAME * audStream.getFormat().getFrameSize();
 
         }
         catch (FileNotFoundException e) {

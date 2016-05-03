@@ -31,6 +31,8 @@ public class Constants {
     public static final double VIDEO_FRAMES_PER_STEP = (double)VIDEO_FPS / STEPS_PER_SECOND;
     public static final int AUDIO_SAMPLES_PER_VIDEO_FRAME = 1600;
     public static final int AUDIO_BYTES_PER_VIDEO_FRAME = AUDIO_SAMPLES_PER_VIDEO_FRAME * AUDIO_BYTES_PER_SAMPLE;
+    public static final int WINDOWSIZE = 20;
+    public static final int AUDIO_BUFFER_SIZE = 12000;
 
     //SUMMARY SETTINGS
     public static final int SUMMARY_SECONDS = 1;

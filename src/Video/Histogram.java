@@ -45,10 +45,10 @@ public class Histogram{
         this.histograms.add(b_hist);
     }
 
-    public List<Mat> getHistogram(byte[] image, int width, int height){
+    public List<Mat> getHistogram(byte[] image){
 
         // load image into OpenCV Mat 8UC3 = 8 bits 3 channels
-        this.IMAGE = new Mat(height, width, CvType.CV_8UC3);
+        this.IMAGE = new Mat(Constants.HEIGHT, Constants.WIDTH, CvType.CV_8UC3);
         this.IMAGE.put(0, 0, image);
         computeChannelHistograms();
         return this.histograms;

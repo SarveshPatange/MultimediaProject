@@ -1,5 +1,7 @@
 package AudioAnalyser;
 
+import Config.Constants;
+
 import javax.sound.sampled.*;
 import java.io.*;
 import java.nio.ByteBuffer;
@@ -12,11 +14,9 @@ public class WAVSummarize {
     private static InputStream waveStream;
     private static AudioInputStream audioInputStream;
     private static AudioFormat audioFormat;
-    private double MAINTHRESHOLD = 800.00;
-    private static int AUDIOTIME = 600;
-    private static int WINDOWSIZE = 20;
+    private double MAINTHRESHOLD;
 
-    private static int AUDIO_BUFFER_SIZE = 12000;
+
     private static int audioFrameRate;
     private static int audioLengthInSeconds;
 
@@ -83,8 +83,8 @@ public class WAVSummarize {
         int audioIdx = 0;
         double[] buffer;
         for (int time = 0; time < sampleSize; time++) {
-            buffer = new double[AUDIO_BUFFER_SIZE];
-            for (int i = 0; i < AUDIO_BUFFER_SIZE; i++) {
+            buffer = new double[Constants.AUDIO_BUFFER_SIZE];
+            for (int i = 0; i < Constants.AUDIO_BUFFER_SIZE; i++) {
 
                 buffer[i] = audioData[audioIdx];
                 audioIdx++;
@@ -109,9 +109,9 @@ public class WAVSummarize {
 
 
         int meanIdx = 0;
-        for (int time = 0; time < sampleSize; time += WINDOWSIZE) {
-            buffer = new double[WINDOWSIZE];
-            for (int i = 0; i < WINDOWSIZE; i++) {
+        for (int time = 0; time < sampleSize; time += Constants.WINDOWSIZE) {
+            buffer = new double[Constants.WINDOWSIZE];
+            for (int i = 0; i < Constants.WINDOWSIZE; i++) {
                 //System.out.println("I : "+i);
                 buffer[i] = meanSq[meanIdx];
                /* System.out.println("Meanidx : "+meanIdx);
@@ -120,7 +120,7 @@ public class WAVSummarize {
                 meanIdx++;
             }
             double windowThreshold = meanSquare(buffer);
-            for (int i = 0; i < WINDOWSIZE; i++) {
+            for (int i = 0; i < Constants.WINDOWSIZE; i++) {
                 if (buffer[i] >= MAINTHRESHOLD && buffer[i] >= windowThreshold) {
                     secs.add(time + i);
                     /*try{
