@@ -67,4 +67,26 @@ public class WAVWriter {
             ex.printStackTrace();
         }
     }
+
+    public void genAudio(int frameNumber, File outputFile)
+    {
+        boolean[] frames = new boolean[Constants.TOTAL_FRAMES];
+        int frameCount;
+
+        if(frameNumber < 150)
+        {
+            frameCount = 0;
+        }
+        else
+        {
+            frameCount = frameNumber - 150;
+        }
+
+        for (; frameCount < frameNumber + 150 && frameCount < Constants.TOTAL_FRAMES; frameCount++ )
+        {
+            frames[frameCount] = true;
+        }
+
+        genAudio(frames, outputFile);
+    }
 }

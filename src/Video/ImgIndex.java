@@ -19,6 +19,8 @@ public class ImgIndex {
 
 
     private File inFile;
+    private String audioFile;
+    private String videoFile;
     private FileInputStream inFileStream;
     private int TOTAL_FRAMES;
 
@@ -34,10 +36,12 @@ public class ImgIndex {
     private int[] bucketMap = new int[4500];
 
 
-    public ImgIndex( String fileName){
+    public ImgIndex(String videoFile, String audioFile){
 
         try{
-            inFile = new File(fileName);
+            this.audioFile = audioFile;
+            this.videoFile = videoFile;
+            inFile = new File(videoFile);
             inFileStream = new FileInputStream(inFile);
             this.TOTAL_FRAMES = (int)inFile.length()/Constants.BYTES_PER_FRAME;
 
@@ -48,6 +52,16 @@ public class ImgIndex {
         }
 
 
+    }
+
+    public String getAudioFile()
+    {
+        return this.audioFile;
+    }
+
+    public String getVideoFile()
+    {
+        return this.videoFile;
     }
 
     public byte[] getNextFrame(){

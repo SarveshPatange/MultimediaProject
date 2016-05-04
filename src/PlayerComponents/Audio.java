@@ -8,24 +8,20 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-/**
- *
- * <Replace this with a short description of the class.>
- *
- * @author Giulio
- */
+
 public class Audio {
 
 	private InputStream waveStream;
 	private AudioInputStream audioInputStream;
 	private Clip audioClip;
+	private AudioFormat audioFormat;
+	private double frameRate = 0;
 	private int currentFrame = 0;
 	long currentTime = 0;
-	public String name;
-	AudioFormat af;
-	double frameRate = 0;
 
 	private final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb
+
+	public String name;
 
 	public Audio(String audioFile){
 		try {
@@ -56,8 +52,8 @@ public class Audio {
 		try{
 			audioClip = AudioSystem.getClip();
 			audioClip.open(audioInputStream);
-			af = audioClip.getFormat();
-			frameRate = af.getFrameRate();
+			audioFormat = audioClip.getFormat();
+			frameRate = audioFormat.getFrameRate();
 		}
 		catch (LineUnavailableException e) {
 			e.printStackTrace();

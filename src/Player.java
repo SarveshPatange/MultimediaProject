@@ -132,7 +132,7 @@ public class Player {
         pauseButton.setEnabled(false);
 
 
-        ImgIndex img = new ImgIndex(this.vidFile);
+        ImgIndex img = new ImgIndex(this.vidFile, this.audFile);
 
         img.genHistList();
         img.genClusters();
@@ -141,6 +141,11 @@ public class Player {
 
         QueryImg query = new QueryImg();
         query.searchImg(this.searchImg,img);
+        System.out.println("Image Found");
+        loadAudio("/home/sarvesh/USC/CS576/Summary_files/short.wav");
+        loadVideo("/home/sarvesh/USC/CS576/Summary_files/short.rgb");
+        playButton.setEnabled(true);
+        pauseButton.setEnabled(true);
     }
 
 

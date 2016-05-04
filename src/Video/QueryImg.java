@@ -2,6 +2,8 @@ package Video;
 
 import Bucket.Bucket;
 import Config.Constants;
+import Writer.FrameWriter;
+import Writer.WAVWriter;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
@@ -27,6 +29,8 @@ public class QueryImg {
     static int IMGHEIGHT = 720;
     double histVal;
     List<Mat> imgHist;
+
+
 
 
 
@@ -148,6 +152,11 @@ public class QueryImg {
 
               System.out.println("Frame No : "+frameSearch);
 
+              FrameWriter writeImage = new FrameWriter(img.getVideoFile());
+              writeImage.writeFrames(frameSearch, new File("/home/sarvesh/USC/CS576/Summary_files/short.rgb"));
+
+              WAVWriter writeAudio = new WAVWriter(img.getAudioFile());
+              writeAudio.genAudio(frameSearch, new File("/home/sarvesh/USC/CS576/Summary_files/short.wav"));
 
           }catch(Exception e){
 
