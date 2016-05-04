@@ -118,8 +118,8 @@ public class Player {
         summ.condense("asd");
 
         System.out.println("Video Summarized");
-        loadAudio("/home/sarvesh/USC/CS576/Summary_files/summarized.wav");
-        loadVideo("/home/sarvesh/USC/CS576/Summary_files/summarized.rgb");
+        loadAudio(Constants.SUMMARIZED_AUDIO);
+        loadVideo(Constants.SUMMARIZED_VIDEO);
         playButton.setEnabled(true);
         pauseButton.setEnabled(true);
 
@@ -142,8 +142,8 @@ public class Player {
         QueryImg query = new QueryImg();
         query.searchImg(this.searchImg,img);
         System.out.println("Image Found");
-        loadAudio("/home/sarvesh/USC/CS576/Summary_files/short.wav");
-        loadVideo("/home/sarvesh/USC/CS576/Summary_files/short.rgb");
+        loadAudio(Constants.SEARCHED_AUDIO);
+        loadVideo(Constants.SEARCHED_VIDEO);
         playButton.setEnabled(true);
         pauseButton.setEnabled(true);
     }

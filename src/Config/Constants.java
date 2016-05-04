@@ -16,7 +16,7 @@ public class Constants {
 
     public static final int CHANNEL_VALUES = 256;
     public static final boolean HISTOGRAM_ACCUMULATE = false;
-    public static String CLUSTER_PATH = "/home/sarvesh/USC/CS576/Files/Alireza_Day2_003/Clusters/";
+    public static String CLUSTER_PATH = "/Users/garrydmello/IdeaProjects/res/Alireza_Day2_001/";
     public static int NUM_BUCKETS = 40;
 
 
@@ -41,8 +41,15 @@ public class Constants {
     //SUMMARY SETTINGS
     public static final int SUMMARY_SECONDS = 1;
     public static final int SUMMARY_FRAMES_TO_WRITE = SUMMARY_SECONDS * VIDEO_FPS;
+    public static final String SUMMARIZED_VIDEO = "/Users/garrydmello/IdeaProjects/res/Summary/summarized.rgb";
+    public static final String SUMMARIZED_AUDIO = "/Users/garrydmello/IdeaProjects/res/Summary/summarized.wav";
 
     //SEARCH SETTINGS
     public static final int SEARCH_SECONDS = 5;
     public static final int SEARCH_FRAMES_TO_WRITE = SEARCH_SECONDS * VIDEO_FPS;
+    public static final String SEARCHED_VIDEO = "/Users/garrydmello/IdeaProjects/res/Summary/short.rgb";
+    public static final String SEARCHED_AUDIO = "/Users/garrydmello/IdeaProjects/res/Summary/short.wav";
+
+
+
 }

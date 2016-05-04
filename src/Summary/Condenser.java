@@ -86,10 +86,10 @@ public class Condenser {
         }
 
         FrameWriter writeImage = new FrameWriter(IMAGE_FILE);
-        writeImage.writeFrames(framesRequired, new File("/home/sarvesh/USC/CS576/Summary_files/summarized.rgb"));
+        writeImage.writeFrames(framesRequired, new File(Constants.SUMMARIZED_VIDEO));
 
         WAVWriter writeAudio = new WAVWriter(AUDIO_FILE);
-        writeAudio.genAudio(framesRequired, new File("/home/sarvesh/USC/CS576/Summary_files/summarized.wav"));
+        writeAudio.genAudio(framesRequired, new File(Constants.SUMMARIZED_AUDIO));
     }
 
 }

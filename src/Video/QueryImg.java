@@ -151,12 +151,13 @@ public class QueryImg {
               }
 
               System.out.println("Frame No : "+frameSearch);
+              System.out.println("Min Diff : "+minDiffHist);
 
               FrameWriter writeImage = new FrameWriter(img.getVideoFile());
-              writeImage.writeFrames(frameSearch, new File("/home/sarvesh/USC/CS576/Summary_files/short.rgb"));
+              writeImage.writeFrames(frameSearch, new File(Constants.SEARCHED_VIDEO));
 
               WAVWriter writeAudio = new WAVWriter(img.getAudioFile());
-              writeAudio.genAudio(frameSearch, new File("/home/sarvesh/USC/CS576/Summary_files/short.wav"));
+              writeAudio.genAudio(frameSearch, new File(Constants.SEARCHED_AUDIO));
 
           }catch(Exception e){
 
