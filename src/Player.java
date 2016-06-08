@@ -136,7 +136,7 @@ public class Player {
 
         img.genHistList();
         img.genClusters();
-        img.genFiles();
+        //img.genFiles();
 
 
         QueryImg query = new QueryImg();
